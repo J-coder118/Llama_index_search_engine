@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/upload_style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="maincontent">
+        <div class="file-upload-wrapper">
+            <div class="file-upload-wrapper-title">
+                <h4>File Upload</h4>
+                <hr />
+                <button class="file-upload-wrapper-title__btn">
+                    Upload Now
+                </button>
+            </div>
+            <div class="box-fileupload">
+                <input type="file" id="fileId" class="file-upload-input" name="files" multiple>
+                <label for="fileId" class="file-upload-btn"></label>
+                <p class="box-fileupload__lable">Drop files here to upload</p>
+            </div>
+            <div class="error-wrapper"></div>
+            <div class="image-previwe"></div>
+        </div>
+    </div>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+ <script src="assets/js/app.js"></script>   
+    <script>
+        
+        $("html").fileUplodPlugins({
+           inputFileUpload: "#fileId",
+            ValidType: ['image/jpeg', 'image/png',],
+            btnUpload: ".file-upload-wrapper-title__btn",
+            deleteImageBtn: ".image-previwe__delete-btn",
+            boxFileUploadPreviwe: '.image-previwe',
+            boxErrorPreviwe: '.error-wrapper',
+        })
+    </script>
+</body>
+
+</html>

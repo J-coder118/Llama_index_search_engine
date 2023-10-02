@@ -1,0 +1,223 @@
+
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background: #f3f3f3;
+    width: 100%;
+    height: 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+}
+.file-upload-wrapper {
+    width: 60%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.box-fileupload {
+    background: #d3e7ff;
+    width: 80%;
+    padding: 50px;
+    border: 2px dashed #a9e4f1;
+    border-radius: 3px;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    background: #f3f3f3;
+    width: 100%;
+    height: 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+.maincontent {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.file-upload-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    background: #fff;
+    padding: 20px 0;
+    border-radius: 4px;
+}
+.box-fileupload {
+    background: #d3e7ff;
+    width: 90%;
+    padding: 50px;
+    border: 3px dashed #8fd9ea;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.file-upload-input {
+    display: none;
+}
+label.file-upload-btn {
+    width: 182px;
+    height: 120px;
+    background-image: url(http://www.pngall.com/wp-content/uploads/2/Upload-PNG-Image-File.png);
+    background-size: cover;
+    background-position: center center;
+    background-origin: border-box;
+    background-repeat: no-repeat;
+}
+.image-previwe {
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.image-previwe__image {
+    min-width: 129px;
+    min-height: 130px;
+    border: 2px solid #5c8ac3;
+    border-radius: 5px;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 10px;
+    position: relative;
+    -webkit-box-shadow: 0 13px 6px -8px rgba(0, 0, 0, 0.3),
+    0 0 4px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 13px 6px -8px rgba(0, 0, 0, 0.3),
+    0 0 4px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+
+}
+.image-previwe__delete-btn {
+    width: 25px;
+    height: 25px;
+    background: #000000ab;
+    color: #fff;
+    border-radius: 28px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+    z-index: 2;
+}
+.image-previwe__delete-btn::before,
+.image-previwe__delete-btn::after {
+    content: "";
+    display: block;
+    width: 56%;
+    height: 2px;
+    background: #fff;
+    position: absolute;
+}
+.image-previwe__delete-btn::after {
+    transform: rotate(43deg);
+}
+.image-previwe__delete-btn::before {
+    transform: rotate(-40deg);
+}
+.image-previwe__hover {
+    background: #0000008f;
+    color: #fff;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all .4s;
+    left: 0;
+    right: 0;
+    top: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
+.image-previwe__hover p{
+    font-size: 13px;
+    width: 100%;
+    padding: 10px;
+    word-wrap: break-word;
+}
+.image-previwe__hover:hover,
+.image-previwe__close-btn:hover {
+    opacity: 1;
+}
+.file-upload-wrapper-title {
+    width: 92%;
+    min-height: 50px;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.file-upload-wrapper-title h4 {
+    display: inline-block;
+    font-size: 20px;
+    padding: 10px 0px 6px 0;
+    font-weight: 200;
+}
+.file-upload-wrapper-title hr {
+    width: 21%;
+    display: inline-block;
+    margin: 6px 0;
+}
+.file-upload-wrapper-title__btn {
+    background-color: #4099ff;
+    border-color: #4099ff;
+    border: none;
+    padding: 12px 20px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition: all ease-in 0.3s;
+    transition: all ease-in 0.3s;
+    border-radius: 2px;
+}
+.box-fileupload__lable {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #1471ad;
+}
+.error-wrapper {
+    margin: 10px;
+    width: 90%;
+}
+
+.error-format {
+    background: #ff00003b;
+    padding: 15px 10px;
+    border-radius: 5px;
+    border: 2px solid #f6343b;
+    color: #b00707;
+    margin: 10px;
+}

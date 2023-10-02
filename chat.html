@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login form</title>
+    <link rel="stylesheet" href="assets/css/chat_style.css">
+</head>
+<body>
+    <div class="content-chat mt-20">
+        <div class="content-chat-user">
+            <div class="head-search-chat">
+                <h4 class="text-center">Chat Finder</h4>
+            </div>
+            
+            <div class="search-user mt-30">
+                <input id="search-input" type="text" placeholder="Search..." name="search" class="search">
+                <span>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+            </div>
+
+            <div class="list-search-user-chat mt-20">
+                <div class="user-chat" data-username="Maria Dennis">
+                    <div class="user-chat-img">
+                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <div class="offline"></div>
+                    </div>
+                    
+                    <div class="user-chat-text">
+                        <p class="mt-0 mb-0"><strong>Maria Dennis</strong></p>
+                        <small>Hi, how are you?</small>
+                    </div>
+                </div>
+
+                <div class="user-chat" data-username="Jorge Harrinson">
+                    <div class="user-chat-img">
+                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <div class="online"></div>
+                    </div>
+                    
+                    <div class="user-chat-text">
+                        <p class="mt-0 mb-0"><strong>Jorge Harrinson</strong></p>
+                        <small>Hi, how are you?</small>
+                    </div>
+                </div>
+
+                <div class="user-chat" data-username="Carla Terry">
+                    <div class="user-chat-img">
+                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <div class="offline"></div>
+                    </div>
+                    
+                    <div class="user-chat-text">
+                        <p class="mt-0 mb-0"><strong>Carla Terry</strong></p>
+                        <small>Hi, how are you?</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-chat-message-user" data-username="Maria Dennis">
+            <div class="head-chat-message-user">
+                <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <div class="message-user-profile">
+                    <p class="mt-0 mb-0 text-white"><strong>Maria Dennis</strong></p>
+                    <small class="text-white"><p class="offline  mt-0 mb-0"></p>Offline</small>
+                </div>
+            </div>
+            <div class="body-chat-message-user">
+                <div class="message-user-left">
+                    <div class="message-user-left-img">
+                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <p class="mt-0 mb-0"><strong>Maria Dennis</strong></p>
+                        <small>mié 17:59</small>
+                    </div>
+                    <div class="message-user-left-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+                <div class="message-user-right">
+                    <div class="message-user-right-img">
+                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
+                        <small>mié 17:59</small>
+                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="message-user-right-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+
+                <div class="message-user-left">
+                    <div class="message-user-left-img">
+                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <p class="mt-0 mb-0"><strong>Maria Dennis</strong></p>
+                        <small>mié 17:59</small>
+                    </div>
+                    <div class="message-user-left-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+                <div class="message-user-right">
+                    <div class="message-user-right-img">
+                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
+                        <small>mié 17:59</small>
+                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="message-user-right-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-chat-message-user">
+                <div class="message-user-send">
+                    <input type="text" placeholder="Aa">
+                </div>
+                <button type="button">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-chat-message-user" data-username="Jorge Harrinson">
+            <div class="head-chat-message-user">
+                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <div class="message-user-profile">
+                    <p class="mt-0 mb-0 text-white"><strong>Jorge Harrinson</strong></p>
+                    <small class="text-white"><p class="online mt-0 mb-0"></p>Online</small>
+                </div>
+            </div>
+            <div class="body-chat-message-user">
+                <div class="message-user-left">
+                    <div class="message-user-left-img">
+                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <p class="mt-0 mb-0"><strong>Jorge Harrinson</strong></p>
+                        <small>mié 17:59</small>
+                    </div>
+                    <div class="message-user-left-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+                <div class="message-user-right">
+                    <div class="message-user-right-img">
+                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
+                        <small>mié 17:59</small>
+                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="message-user-right-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+
+                <div class="message-user-left">
+                    <div class="message-user-left-img">
+                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <p class="mt-0 mb-0"><strong>Jorge Harrinson</strong></p>
+                        <small>mié 17:59</small>
+                    </div>
+                    <div class="message-user-left-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+                <div class="message-user-right">
+                    <div class="message-user-right-img">
+                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
+                        <small>mié 17:59</small>
+                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="message-user-right-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-chat-message-user">
+                <div class="message-user-send">
+                    <input type="text" placeholder="Aa">
+                </div>
+                <button type="button">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="content-chat-message-user" data-username="Carla Terry">
+            <div class="head-chat-message-user">
+                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                <div class="message-user-profile">
+                    <p class="mt-0 mb-0 text-white"><strong>Carla Terry</strong></p>
+                    <small class="text-white"><p class="offline  mt-0 mb-0"></p>Offline</small>
+                </div>
+            </div>
+            <div class="body-chat-message-user">
+                <div class="message-user-left">
+                    <div class="message-user-left-img">
+                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <p class="mt-0 mb-0"><strong>Carla Terry</strong></p>
+                        <small>mié 17:59</small>
+                    </div>
+                    <div class="message-user-left-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+                <div class="message-user-right">
+                    <div class="message-user-right-img">
+                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
+                        <small>mié 17:59</small>
+                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="message-user-right-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+
+                <div class="message-user-left">
+                    <div class="message-user-left-img">
+                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                        <p class="mt-0 mb-0"><strong>Carla Terry</strong></p>
+                        <small>mié 17:59</small>
+                    </div>
+                    <div class="message-user-left-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+                <div class="message-user-right">
+                    <div class="message-user-right-img">
+                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
+                        <small>mié 17:59</small>
+                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    </div>
+                    <div class="message-user-right-text">
+                        <strong>Hola, ¿Cómo estás?</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-chat-message-user">
+                <div class="message-user-send">
+                    <input type="text" placeholder="Aa">
+                </div>
+                <button type="button">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+ <script src="assets/js/chat.js"></script>  
+</body>
+</html>
