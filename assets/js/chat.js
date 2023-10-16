@@ -24,6 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Activar el primer elemento user-chat inicialmente
-    userChats[0].classList.add('active');
-    chatMessages[0].classList.add('active');
+    // userChats[0].classList.add('active');
+    // chatMessages[0].classList.add('active');
 });

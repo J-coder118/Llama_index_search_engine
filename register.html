@@ -1,32 +1,129 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register form</title>
-    <link rel="stylesheet" href="assets/css/login_style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="assets/css/login_style.css" />
+    <link rel="stylesheet" href="assets/css/alert.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="alert-position"></div>
     <div class="wrapper">
-        <form action="">
-            <h1>Register </h1>
-            <div class="input-box">
-                <input type="text" placeholder="Username" required>
-            </div>
-            <div class="input-box">
-                <input type="password" placeholder="Password" required>
-            </div>
-            <div class="remember-forgot">
-                <label>
-                    <input type="checkbox">Remember me
-                </label>
-            </div>
-            <button type="submit" class="btn">Register</button>
+      <form>
+        <h1>Register</h1>
+        <div class="input-box">
+          <input type="text" id="username" placeholder="Username" required />
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="remember-forgot">
+          <label> <input type="checkbox" />Remember me </label>
+        </div>
+        <button class="btn" onclick="register(event)">Register</button>
 
-            <div class="register-link">
-                <p>Don't have an account?<a href="login.html"> Login</a></p>
-            </div>
-        </form>
+        <div class="register-link">
+          <p>Don't have an account?<a href="login.html"> Login</a></p>
+        </div>
+      </form>
     </div>
-</body>
+    <script>
+      function close() {
+        var acc = document.getElementsByClassName("closebtn");
+        var div = acc.parentElement;
+        console.log(div);
+        for (i = 0; i < acc.length; i++) {
+          acc[i].onclick = function () {
+            var div = this.parentElement;
+            setTimeout(function () {
+              div.style.display = "none";
+              div.style.opacity = "0";
+            }, 100);
+          };
+        }
+      }
+
+      function register(e) {
+        // Get the entered username and password
+        e.preventDefault();
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var email = document.getElementById("email").value;
+
+        // Prepare the data to be sent to the backend
+        var data = {
+          username: username,
+          password: password,
+          email: email,
+        };
+
+        var alert_pst = document.getElementsByClassName("alert-position")[0];
+
+        // Make a POST request to the login backend API endpoint
+        fetch("http://127.0.0.1:8000/api_auth/register/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            // Handle the login result
+
+            if (result.status == "success") {
+              alert_pst.innerHTML += `<div class="alert success">
+                <span class="closebtn success" onclick="close(event)">×</span>
+                <i class="fa fa-check fa-1x"></i> 
+               <b>Register successful!</b>.
+              </div>`;
+              // Redirect to a new page or perform other actions upon successful login
+              // window.location.href = 'login.html';
+              close();
+              sleep(1000);
+              window.location.href = "login.html";
+            } else {
+              if (result.password) {
+                response = "Password: " + result.password;
+              } else if (result.email) {
+                response = "Email: " + result.email;
+              } else if (result.username) {
+                response = "Username: " + result.username;
+              }
+              alert_pst.innerHTML += `<div class="alert warning">
+              <p class="closebtn warning" onclick="close(event)">×</p> 
+              <i class="fa fa-warning fa-1x"></i>
+              <b>${response}</b>
+            </div>`;
+              console.log("sdfds", result);
+              close();
+            }
+          })
+          .catch((error) => {
+            // Handle any errors that occur during the request
+            alert_pst.innerHTML += `<div class="alert success">
+                <span class="closebtn success" onclick="close(event)">×</span>
+                <i class="fa fa-check fa-1x"></i> 
+               <b>Register successful!</b>.
+              </div>`;
+            console.log(error);
+            close();
+            window.location.href = "login.html";
+          });
+      }
+    </script>
+    <script></script>
+  </body>
 </html>

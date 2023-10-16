@@ -9,10 +9,12 @@ body{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    height: 100% !important;
 }
 
 a{
     text-decoration: none;
+    color: #19b6d3 ;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -50,7 +52,7 @@ h6 {
     font-size: clamp(16px, calc(16px + (16 - 16) * ((100vw - 320px) / (1920 - 320))), 16px);
     margin: 0;
 }
-  
+
 
 p{
     font-size: 15px;
@@ -58,6 +60,11 @@ p{
 }
 ul li, ol li{
     line-height: 28px;
+}
+
+select {
+    border-radius: 6px;
+    padding: 5px;
 }
 
 .container{
@@ -80,6 +87,23 @@ ul li, ol li{
 
 .h3-text{
     margin: 60px 0;
+}
+
+
+.tool-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 15px;
+}
+.tool-bar .register-link {
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    margin: 0px 0 6px;
+    color: #19b6d3 !important;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 .mt-60{ margin-top: 60px; } .mt-55{ margin-top: 55px; } .mt-50{ margin-top: 50px; } 
@@ -130,9 +154,7 @@ ul li, ol li{
 .content-chat{
     margin-right: 30px;
     margin-left: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
+    
     padding: 20px;
 }
 
@@ -269,12 +291,13 @@ ul li, ol li{
 }
 
 .content-chat .content-chat-message-user{
-    display: none;
+    display: block;
     background-color: #ffffff;
     padding: 15px;
     border-radius: 25px;
-    max-width: 700px;
+    max-width: 1000px;
     width: 100%;
+    margin: auto;
 }
 
 .content-chat .content-chat-message-user.active{
@@ -434,8 +457,8 @@ ul li, ol li{
     padding: 15px 25px;
     background-color: #c5e2e8;
     border-radius: 15px;
-    color: #949494;
-    width: 250px;
+    color: #4f4f4f;
+    width: 600px;
 }
 
 .content-chat .content-chat-message-user .body-chat-message-user .message-user-right .message-user-right-text::before{
@@ -488,6 +511,8 @@ ul li, ol li{
 .content-chat .content-chat-message-user .footer-chat-message-user button:hover{
     background-color: #daa520;
 }
+
+
 
 @media (max-width: 913px){
     .content-chat{
@@ -580,4 +605,6 @@ ul li, ol li{
     .content-chat .content-chat-user .list-search-user-chat .user-chat .user-chat-text {
         display: none;
     }
+
+    
 }

@@ -1,250 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login form</title>
-    <link rel="stylesheet" href="assets/css/chat_style.css">
-</head>
-<body>
-    <div class="content-chat mt-20">
-        <div class="content-chat-user">
-            <div class="head-search-chat">
-                <h4 class="text-center">Chat Finder</h4>
-            </div>
-            
-            <div class="search-user mt-30">
-                <input id="search-input" type="text" placeholder="Search..." name="search" class="search">
-                <span>
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chat page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/chat_style.css" />
+    <link rel="stylesheet" href="assets/css/loading.css" />
+    <link rel="stylesheet" href="assets/css/alert.css" />
+    <script>
+      function get_pdf_list() {
+        fetch("http://127.0.0.1:8000/api_auth/getDocuments/", {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            // Handle the login result
+            console.log(result);
+            Opt_cont = "";
 
-            <div class="list-search-user-chat mt-20">
-                <div class="user-chat" data-username="Maria Dennis">
-                    <div class="user-chat-img">
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <div class="offline"></div>
-                    </div>
-                    
-                    <div class="user-chat-text">
-                        <p class="mt-0 mb-0"><strong>Maria Dennis</strong></p>
-                        <small>Hi, how are you?</small>
-                    </div>
-                </div>
+            for (const pdf_name of result.list) {
+              Opt_cont += `<option value=${pdf_name}>${pdf_name}</option>`;
+            }
 
-                <div class="user-chat" data-username="Jorge Harrinson">
-                    <div class="user-chat-img">
-                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <div class="online"></div>
-                    </div>
-                    
-                    <div class="user-chat-text">
-                        <p class="mt-0 mb-0"><strong>Jorge Harrinson</strong></p>
-                        <small>Hi, how are you?</small>
-                    </div>
-                </div>
+            var Opt_pst = document.getElementById("list");
+            Opt_pst.innerHTML = Opt_cont;
+          });
+      }
 
-                <div class="user-chat" data-username="Carla Terry">
-                    <div class="user-chat-img">
-                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <div class="offline"></div>
-                    </div>
-                    
-                    <div class="user-chat-text">
-                        <p class="mt-0 mb-0"><strong>Carla Terry</strong></p>
-                        <small>Hi, how are you?</small>
-                    </div>
-                </div>
-            </div>
+      window.onload = get_pdf_list;
+    </script>
+  </head>
+  <body>
+    <div class="alert-position"></div>
+    <div class="spinner-square">
+      <div class="square-1 square"></div>
+      <div class="square-2 square"></div>
+      <div class="square-3 square"></div>
+    </div>
+
+    <div class="content-chat mt-50">
+      <div class="tool-bar">
+        <div class="register-link">
+          <a href="upload.html"
+            ><span><i class="fa fa-upload"> </i> uploading...</span></a
+          >
         </div>
-        <div class="content-chat-message-user" data-username="Maria Dennis">
-            <div class="head-chat-message-user">
-                <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                <div class="message-user-profile">
-                    <p class="mt-0 mb-0 text-white"><strong>Maria Dennis</strong></p>
-                    <small class="text-white"><p class="offline  mt-0 mb-0"></p>Offline</small>
-                </div>
-            </div>
-            <div class="body-chat-message-user">
-                <div class="message-user-left">
-                    <div class="message-user-left-img">
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <p class="mt-0 mb-0"><strong>Maria Dennis</strong></p>
-                        <small>mié 17:59</small>
-                    </div>
-                    <div class="message-user-left-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-                <div class="message-user-right">
-                    <div class="message-user-right-img">
-                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
-                        <small>mié 17:59</small>
-                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-                    <div class="message-user-right-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-
-                <div class="message-user-left">
-                    <div class="message-user-left-img">
-                        <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <p class="mt-0 mb-0"><strong>Maria Dennis</strong></p>
-                        <small>mié 17:59</small>
-                    </div>
-                    <div class="message-user-left-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-                <div class="message-user-right">
-                    <div class="message-user-right-img">
-                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
-                        <small>mié 17:59</small>
-                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-                    <div class="message-user-right-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-chat-message-user">
-                <div class="message-user-send">
-                    <input type="text" placeholder="Aa">
-                </div>
-                <button type="button">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </div>
+        <select name="pdf-list" id="list"></select>
+      </div>
+      <div class="content-chat-message-user" data-username="Chat Bot">
+        <div class="head-chat-message-user">
+          <img src="assets/images/chatbot.png" alt="" />
+          <div class="message-user-profile">
+            <p class="mt-0 mb-0 text-white"><strong>Assistant</strong></p>
+            <small class="text-white" id="Network_Status"></small>
+          </div>
         </div>
-
-        <div class="content-chat-message-user" data-username="Jorge Harrinson">
-            <div class="head-chat-message-user">
-                <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                <div class="message-user-profile">
-                    <p class="mt-0 mb-0 text-white"><strong>Jorge Harrinson</strong></p>
-                    <small class="text-white"><p class="online mt-0 mb-0"></p>Online</small>
-                </div>
+        <div class="body-chat-message-user" id="chatBody">
+          <div class="message-user-right">
+            <div class="message-user-right-img">
+              <p class="mt-0 mb-0"><strong>Assistant</strong></p>
+              <small></small>
+              <img src="assets/images/chatbot.png" alt="" />
             </div>
-            <div class="body-chat-message-user">
-                <div class="message-user-left">
-                    <div class="message-user-left-img">
-                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <p class="mt-0 mb-0"><strong>Jorge Harrinson</strong></p>
-                        <small>mié 17:59</small>
-                    </div>
-                    <div class="message-user-left-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-                <div class="message-user-right">
-                    <div class="message-user-right-img">
-                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
-                        <small>mié 17:59</small>
-                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-                    <div class="message-user-right-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-
-                <div class="message-user-left">
-                    <div class="message-user-left-img">
-                        <img src="https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <p class="mt-0 mb-0"><strong>Jorge Harrinson</strong></p>
-                        <small>mié 17:59</small>
-                    </div>
-                    <div class="message-user-left-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-                <div class="message-user-right">
-                    <div class="message-user-right-img">
-                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
-                        <small>mié 17:59</small>
-                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-                    <div class="message-user-right-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
+            <div class="message-user-right-text">
+              <strong>Hello! What do you want to know?</strong>
             </div>
-            <div class="footer-chat-message-user">
-                <div class="message-user-send">
-                    <input type="text" placeholder="Aa">
-                </div>
-                <button type="button">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </div>
+          </div>
         </div>
-
-        <div class="content-chat-message-user" data-username="Carla Terry">
-            <div class="head-chat-message-user">
-                <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                <div class="message-user-profile">
-                    <p class="mt-0 mb-0 text-white"><strong>Carla Terry</strong></p>
-                    <small class="text-white"><p class="offline  mt-0 mb-0"></p>Offline</small>
-                </div>
-            </div>
-            <div class="body-chat-message-user">
-                <div class="message-user-left">
-                    <div class="message-user-left-img">
-                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <p class="mt-0 mb-0"><strong>Carla Terry</strong></p>
-                        <small>mié 17:59</small>
-                    </div>
-                    <div class="message-user-left-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-                <div class="message-user-right">
-                    <div class="message-user-right-img">
-                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
-                        <small>mié 17:59</small>
-                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-                    <div class="message-user-right-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-
-                <div class="message-user-left">
-                    <div class="message-user-left-img">
-                        <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                        <p class="mt-0 mb-0"><strong>Carla Terry</strong></p>
-                        <small>mié 17:59</small>
-                    </div>
-                    <div class="message-user-left-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-                <div class="message-user-right">
-                    <div class="message-user-right-img">
-                        <p class="mt-0 mb-0"><strong>Luis Angel Solano Rivera</strong></p>
-                        <small>mié 17:59</small>
-                        <img src="https://images.pexels.com/photos/2117283/pexels-photo-2117283.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
-                    </div>
-                    <div class="message-user-right-text">
-                        <strong>Hola, ¿Cómo estás?</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-chat-message-user">
-                <div class="message-user-send">
-                    <input type="text" placeholder="Aa">
-                </div>
-                <button type="button">
-                    <i class="fa-solid fa-paper-plane"></i>
-                </button>
-            </div>
+        <div class="footer-chat-message-user">
+          <div class="message-user-send">
+            <input type="text" id="query" placeholder="Aa" defalutvalue="" />
+          </div>
+          <button id="chatBtn" onclick="chat(event)">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
         </div>
+      </div>
     </div>
     <script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
- <script src="assets/js/chat.js"></script>  
-</body>
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function close() {
+        var acc = document.getElementsByClassName("closebtn");
+        var div = acc.parentElement;
+        console.log(div);
+        for (i = 0; i < acc.length; i++) {
+          acc[i].onclick = function () {
+            var div = this.parentElement;
+            setTimeout(function () {
+              div.style.display = "none";
+              div.style.opacity = "0";
+            }, 100);
+          };
+        }
+      }
+
+      function loading(step) {
+        var mainContent = document.getElementsByClassName("content-chat")[0];
+        var loading = document.getElementsByClassName("spinner-square")[0];
+        if (step == "start") {
+          mainContent.style.opacity = "0.5";
+          mainContent.style.display = "none";
+          loading.style.opacity = "1";
+          loading.style.display = "flex";
+        } else if (step == "end") {
+          mainContent.style.opacity = "1";
+          mainContent.style.display = "block";
+          loading.style.opacity = "0";
+          loading.style.display = "none";
+        }
+      }
+
+      var chatBtn = document.getElementById("chatBtn");
+
+      var textInput = document.getElementById("query");
+      // Add a key press event listener to the input element
+      textInput.addEventListener("keyup", function (event) {
+        // Check if the Enter key (key code 13) is pressed
+        if (event.keyCode === 13) {
+          // Simulate button click
+          chatBtn.click();
+        }
+      });
+
+      // online/offline check.
+      var netStatus = document.getElementById("Network_Status");
+      if (navigator.onLine) {
+        netStatus.innerHTML = `<p class="online mt-0 mb-0"></p>
+              Online`;
+      } else {
+        netStatus.innerHTML = `<p class="offline mt-0 mb-0"></p>
+              Offline`;
+      }
+      console.log("status", navigator.onLine);
+
+      function chat(e) {
+        e.preventDefault();
+        // user query
+
+        if (textInput.value == "") {
+          var alert_pst = document.getElementsByClassName("alert-position")[0];
+          alert_pst.innerHTML += `<div class="alert warning">
+                  <span class="closebtn warning" onclick="close(event)">×</span>
+                  <i class="fa fa-warning fa-1x"></i> 
+                <b>Please fill in the query input.</b>.
+                </div>`;
+          // Redirect to a new page or perform other actions upon successful login
+          // window.location.href = 'login.html';
+          close();
+        } else {
+          // part for adding questions from User.
+          var chatBody = document.getElementById("chatBody");
+          var time = getCurrentTime();
+          chatBody.innerHTML += `<div class="message-user-left">
+                <div class="message-user-left-img">
+                <img
+                  src="assets/images/user.jpeg"
+                  alt=""
+                />
+                <p class="mt-0 mb-0"><strong>User</strong></p>
+                <small>${time}</small>
+              </div>
+
+              <div class="message-user-left-text">
+                <strong>${query.value}</strong>
+              </div>
+            </div>`;
+
+          var container = document.getElementById("chatBody");
+          var seletOpt = document.getElementById("list");
+
+          var query_pdf_name = seletOpt.value;
+          // container.scrollTop = container.scrollHeight;
+
+          container.scrollTo({
+            top: container.scrollHeight,
+            behavior: "smooth",
+          });
+
+          var data = {
+            query: query.value,
+            pdf_name: query_pdf_name,
+          };
+          query.value = "";
+
+          console.log(data);
+          loading("start");
+          fetch("http://127.0.0.1:8000/api_auth/chat/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              loading("end");
+              // Handle the login result
+              var time = getCurrentTime();
+              chatBody.innerHTML += `<div class="message-user-right">
+              <div class="message-user-right-img">
+                <p class="mt-0 mb-0"><strong>AI Assistant</strong></p>
+                <small>${time}</small>s
+                <img
+                src="assets/images/chatbot.png"
+                  alt=""
+                />
+              </div>
+              <div class="message-user-right-text">
+                <strong>${result.text}</strong>
+                </div>
+                </div>`;
+
+              container.scrollTo({
+                top: container.scrollHeight,
+                behavior: "smooth",
+              });
+            })
+            .catch((error) => {
+              // Handle any errors that occur during the request
+              console.error("Error:", error);
+              loading("end");
+              var alert_pst =
+                document.getElementsByClassName("alert-position")[0];
+              alert_pst.innerHTML += `<div class="alert warning">
+                  <span class="closebtn warning" onclick="close(event)">×</span>
+                  <i class="fa fa-warning fa-1x"></i> 
+                <b>Your question is not fit and occured error on server.</b>.
+                </div>`;
+              // Redirect to a new page or perform other actions upon successful login
+              // window.location.href = 'login.html';
+              close();
+            });
+        }
+      }
+
+      function getCurrentTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+
+        // Format the time to ensure leading zeros if needed
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+
+        // Create a string representation of the current time
+        var currentTimeString = hours + ":" + minutes + ":" + seconds;
+
+        return currentTimeString;
+      }
+    </script>
+    <script src="assets/js/chat.js"></script>
+  </body>
 </html>

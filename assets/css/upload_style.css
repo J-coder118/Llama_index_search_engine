@@ -40,6 +40,7 @@ body {
     background: #f3f3f3;
     width: 100%;
     height: 100%;
+    display: flex;
 }
 * {
     margin: 0;
@@ -47,6 +48,19 @@ body {
 }
 ul{
     list-style: none;
+}
+.chat-link {
+    margin-bottom: 20px;
+}
+
+.chat-link a {
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    margin: 0px 0 6px;
+    color: #19b6d3 !important;
+    text-decoration: none;
+    font-weight: 600;
 }
 .maincontent {
     max-width: 1080px;
@@ -61,7 +75,7 @@ ul{
     align-items: center;
     flex-flow: column;
     background: #fff;
-    padding: 20px 0;
+    padding: 20px 70px;
     border-radius: 4px;
 }
 .box-fileupload {
@@ -74,6 +88,7 @@ ul{
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    margin: auto
 }
 .file-upload-input {
     display: none;
