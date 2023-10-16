@@ -34,14 +34,20 @@ from llama_index.storage.index_store import SimpleIndexStore
 from llama_index.storage.docstore import SimpleDocumentStore
 from llama_index.indices.composability.graph import ComposableGraph
 
+import os
 import json
 from .models import Pinecone_indice
 
+INDEX_NAME = os.environ["INDEX_NAME"]
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+PINECONE_API_KEY = os.environ["PINECONE_API_KEY"]
+PINECONE_REGION = os.environ["PINECONE_REGION"]
 
-openai.api_key = "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"
-index_name = "nalc20192023a"
 
-pinecone.init(api_key="a79d363d-0ad1-4b22-a6f4-eacaa0d3a66e", environment="gcp-starter")
+openai.api_key = OPENAI_API_KEY
+index_name = INDEX_NAME
+
+pinecone.init(api_key=PINECONE_API_KEY, environment=PINECONE_REGION)
 
 index = None
 stored_docs = {}
@@ -64,7 +70,7 @@ def initialize_index(namespace):
         llm=OpenAIChat(
             temperature=0,
             model_name="gpt-3.5-turbo",
-            openai_api_key="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",
+            openai_api_key=OPENAI_API_KEY,
             streaming=True,
         )
     )
@@ -79,7 +85,7 @@ def initialize_index(namespace):
         index_name=index_name,
         environment="gcp-starter",
         metadata_filters=str(namespace),
-        api_key="a79d363d-0ad1-4b22-a6f4-eacaa0d3a66e",
+        api_key=PINECONE_API_KEY,
     )
     
     storage_context = StorageContext.from_defaults(
