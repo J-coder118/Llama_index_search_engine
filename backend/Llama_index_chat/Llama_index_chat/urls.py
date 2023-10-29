@@ -22,5 +22,5 @@ from django.conf.urls import include
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('api_auth/', include('LlamaApp.urls'))
+    path('', include('LlamaApp.urls'))
 ]

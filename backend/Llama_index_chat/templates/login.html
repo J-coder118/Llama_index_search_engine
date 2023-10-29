@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>login form</title>
+    <link rel="stylesheet" href="{% static 'assets/css/login_style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/alert.css' %}" />
+    <style>
+      
+    html {
+        
+        
+      font-family: 'Cera Pro';
+    }
+
+
+    h1 {
+      margin: 0;
+      font-family: 'Cera Pro Bold';
+    }
+
+    b {
+      font-family: 'Cera Pro Bold';
+    }
+
+    /* Alert */
+    .alert-position {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 14px;
+    }
+
+    .alert {
+      padding: 20px;
+      background-color: #ffcfcc;
+      border: 1px solid #f44336;
+      border-left: 9px solid #f44336;
+      color: #f44336;
+      opacity: 0.83;
+      transition: opacity 0.6s;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    /* Alert Success */
+    .alert.success {
+      border: 1px solid #04AA6D;
+      border-left: 9px solid #04AA6D;
+      background-color: #a3ffdd;
+      color: #04AA6D;
+    }
+
+    /* Alert Info */
+    .alert.info {
+      border: 1px solid #2196F3;
+      border-left: 9px solid #2196F3;
+      background-color: #c3d9eb;
+      color: #2196F3;
+    }
+
+    /* Alert Warning */
+    .alert.warning {
+      border: 1px solid #ff9800;
+      border-left: 9px solid #ff9800;
+      background-color: #ffe1b5;
+      color: #ff9800;
+    }
+
+    /* Closebtn */
+    .closebtn {
+      padding-left: 15px;
+      color: #f44336;
+      font-weight: bold;
+      float: right;
+      line-height: 18px;
+      cursor: pointer;
+      transition: 0.5s;
+      font-size: 23px;
+    }
+
+    /* Closebtn Success */
+    .closebtn.success {
+      padding-left: 15px;
+      color: #04AA6D;
+      font-weight: bold;
+      float: right;
+      line-height: 18px;
+      cursor: pointer;
+      transition: 0.5s;
+      font-size: 23px;
+    }
+
+    /* Closebtn Info */
+    .closebtn.info {
+      padding-left: 15px;
+      color: #2196F3;
+      font-weight: bold;
+      float: right;
+      line-height: 18px;
+      cursor: pointer;
+      transition: 0.5s;
+      font-size: 23px;
+    }
+
+    /* Closebtn Warning */
+    .closebtn.warning {
+      padding-left: 15px;
+      color: #ff9800;
+      font-weight: bold;
+      float: right;
+      line-height: 18px;
+      cursor: pointer;
+      transition: 0.5s;
+      font-size: 23px;
+    }
+
+    .closebtn:hover {
+      transform: scale(1.3);
+    }
+    
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url(https://images.unsplash.com/Ys-DBJeX0nE.JPG?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80) no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+    .wrapper{
+        width: 420px;
+        background: transparent;
+        border:2px solid rgba(255, 255, 255, .2);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        color: #fff;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+    .wrapper h1{
+        font-size: 36px;
+        text-align: center;
+    }
+    .wrapper .input-box{
+        width: 100%;
+        height: 60px;
+        position: relative;
+        margin-top: 20px;
+    }
+    .input-box input{
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 40px;
+        font-size: 16px;
+        color: #fff;
+        padding: 20px 40px 20px 20px;
+    }
+    .input-box input::placeholder{
+        color: #fff;
+    
+    }
+    .wrapper .remember-forgot{
+        display: flex;
+        justify-content: space-between;
+        font-size: 14.5px;
+        margin: 15px 5px 15px;
+    }
+    .remember-forgot label input{
+    accent-color: #fff;
+    margin-right: 3px;
+    }
+    .remember-forgot a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .remember-forgot a:hover{
+        text-decoration: none;
+        color: black;
+    }
+    .wrapper .btn{
+        width: 100%;
+        height: 45px;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        cursor: pointer;
+        color: #333;
+        font-weight: 700;
+    }
+    .wrapper .register-link{
+        font-size: 14.5px;
+        text-align: center;
+        margin: 20px 0 15px;
+    
+    }
+    .register-link p a{
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+    }
+    .register-link p a:hover{
+        text-decoration: none;
+        color: black;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="alert-position"></div>
+    <div class="wrapper">
+      <form>
+        <h1>Login</h1>
+        <div class="input-box">
+          <input type="text" id="username" placeholder="Username" required />
+        </div>
+        <div class="input-box">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div class="remember-forgot">
+          <label> <input type="checkbox" />Remember me </label>
+          <a href="#">Forgot password?</a>
+        </div>
+        <button class="btn" onclick="login(event)">Login</button>
+
+        <div class="register-link">
+          <p>Don't have an account?<a href="/register"> Register</a></p>
+        </div>
+      </form>
+    </div>
+    <script>
+      function close() {
+        var acc = document.getElementsByClassName("closebtn");
+        var div = acc.parentElement;
+        console.log(div);
+        for (i = 0; i < acc.length; i++) {
+          acc[i].onclick = function () {
+            var div = this.parentElement;
+            setTimeout(function () {
+              div.style.display = "none";
+              div.style.opacity = "0";
+            }, 100);
+          };
+        }
+      }
+      function login(e) {
+        e.preventDefault();
+        // Get the entered username and password
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        // Prepare the data to be sent to the backend
+        var data = {
+          username: username,
+          password: password,
+        };
+        console.log(data);
+
+        var alert_pst = document.getElementsByClassName("alert-position")[0];
+        // Make a POST request to the login backend API endpoint
+        fetch("http://127.0.0.1:8000/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            // Handle the login result
+            console.log(result);
+            if (result.username) {
+              // Redirect to a new page or perform other actions upon successful login
+              window.location.href = "chat";
+            } else {
+              alert_pst.innerHTML += `<div class="alert">
+              <p class="closebtn warning" onclick="close(event)">×</p> 
+              <i class="fa fa-warning fa-1x"></i>
+              <b>Login failed. Please check your credentials.</b>
+            </div>`;
+              close();
+            }
+          })
+          .catch((error) => {
+            // Handle any errors that occur during the request
+            alert_pst.innerHTML += `<div class="alert ">
+                <span class="closebtn success" onclick="close(event)">×</span>
+                <i class="fa fa-check fa-1x"></i> 
+               <b>Error occured.</b>.
+              </div>`;
+            console.log(error);
+            close();
+            console.error("Error:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

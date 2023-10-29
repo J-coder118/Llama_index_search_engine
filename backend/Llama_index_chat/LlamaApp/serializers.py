@@ -9,7 +9,6 @@ User = get_user_model()
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
-
     def validate(self, attrs):
         # Perform any additional validation or authentication logic here
         # For example, you can authenticate the user using Django's authenticate() method
@@ -17,10 +16,10 @@ class UserLoginSerializer(serializers.Serializer):
         username = attrs.get('username')
         password = attrs.get('password')
 
+        print(username, password)
         user = authenticate(username=username, password=password)
         if not user:
             raise serializers.ValidationError('Invalid username or password.')
-
         return attrs
 
 class UserSerializer(serializers.ModelSerializer):
@@ -33,9 +32,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ["id", "username", "email", "password"]
 
     def create(self, validated_data):
+        print("dddddd")
         username = validated_data["username"]
         email = validated_data["email"]
         password = validated_data["password"]
+        print("username", username)
         print("user", username, email, password)
         user_obj = User(username=username, email=email)
         user_obj.set_password(password)
@@ -45,8 +46,10 @@ class UserSerializer(serializers.ModelSerializer):
             "status": "success",
             "data": user_obj
         }
-        return JsonResponse(response_json)
-    
+
+        print("response data", response_json)
+        # return JsonResponse(response_json)JsonResponse
+        # return "dsfdsf"
 from .models import Document
 
 class DocumentSerializer(serializers.ModelSerializer):

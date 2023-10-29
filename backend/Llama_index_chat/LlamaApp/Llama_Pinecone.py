@@ -1,4 +1,5 @@
 #########################  1
+from dotenv import load_dotenv
 from pathlib import Path
 from llama_index.storage.storage_context import StorageContext
 from llama_index import download_loader
@@ -38,10 +39,10 @@ import os
 import json
 from .models import Pinecone_indice
 
-INDEX_NAME = os.environ["INDEX_NAME"]
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
-PINECONE_API_KEY = os.environ["PINECONE_API_KEY"]
-PINECONE_REGION = os.environ["PINECONE_REGION"]
+INDEX_NAME = "nalc20192023a"#os.environ.get("INDEX_NAME")
+OPENAI_API_KEY = "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"#os.environ.get("OPENAI_API_KEY")
+PINECONE_API_KEY = "a79d363d-0ad1-4b22-a6f4-eacaa0d3a66e"#os.environ.get("PINECONE_API_KEY")
+PINECONE_REGION = "gcp-starter"#os.environ.get("PINECONE_REGION")
 
 
 openai.api_key = OPENAI_API_KEY
@@ -99,6 +100,7 @@ def initialize_index(namespace):
 
 def uploading_to_pinecone(PDF_file_path, pdf_name):
     global index, stored_docs, docstore  # , index_store
+    print("main function...")
     initialize_index(pdf_name)
     document = loader.load_data(file=PDF_file_path)[0]
 
