@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chat -----------page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/alert.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chat_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}">
+    
+   
+    <script>
+      function get_pdf_list() {
+        fetch("http://lumas.ai/getDocuments", {
+          method: "get",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            // Handle the login result
+            console.log(result);
+            Opt_cont = "";
+
+            for (const pdf_name of result.list) {
+              Opt_cont += `<option value=${pdf_name}>${pdf_name}</option>`;
+            }
+
+            var Opt_pst = document.getElementById("list");
+            Opt_pst.innerHTML = Opt_cont;
+          });
+      }
+
+      window.addEventListener('DOMContentLoaded', function() {
+        get_pdf_list()
+      });
+      //window.onload = get_pdf_list;
+    </script>
+  </head>
+  <body>
+    <div class="alert-position"></div>
+    <div class="spinner-square">
+      <div class="square-1 square"></div>
+      <div class="square-2 square"></div>
+      <div class="square-3 square"></div>
+    </div>
+
+    <div class="content-chat mt-50">
+      <div class="tool-bar">
+        <div class="register-link">
+          <a href="upload"
+            ><span><i class="fa fa-upload"> </i> uploading...</span></a
+          >
+        </div>
+        <select name="pdf-list" id="list"></select>
+      </div>
+      <div class="content-chat-message-user" data-username="Chat Bot">
+        <div class="head-chat-message-user">
+          <img src="{% static 'images/chatbot.png' %}" alt="" />
+          <div class="message-user-profile">
+            <p class="mt-0 mb-0 text-white"><strong>Assistant</strong></p>
+            <small class="text-white" id="Network_Status"></small>
+          </div>
+        </div>
+        <div class="body-chat-message-user" id="chatBody">
+          <div class="message-user-right">
+            <div class="message-user-right-img">
+              <p class="mt-0 mb-0"><strong>Assistant</strong></p>
+              <small></small>
+              <img src="{% static 'images/chatbot.png' %}" alt="" />
+            </div>
+            <div class="message-user-right-text">
+              <strong>Hello! What do you want to know?</strong>
+            </div>
+          </div>
+        </div>
+        <div class="footer-chat-message-user">
+          <div class="message-user-send">
+            <input type="text" id="query" placeholder="Aa" defalutvalue="" />
+          </div>
+          <button id="chatBtn" onclick="chat(event)">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function close() {
+        var acc = document.getElementsByClassName("closebtn");
+        var div = acc.parentElement;
+        console.log(div);
+        for (i = 0; i < acc.length; i++) {
+          acc[i].onclick = function () {
+            var div = this.parentElement;
+            setTimeout(function () {
+              div.style.display = "none";
+              div.style.opacity = "0";
+            }, 100);
+          };
+        }
+      }
+
+      function loading(step) {
+        var mainContent = document.getElementsByClassName("content-chat")[0];
+        var loading = document.getElementsByClassName("spinner-square")[0];
+        if (step == "start") {
+          mainContent.style.opacity = "0.5";
+          mainContent.style.display = "none";
+          loading.style.opacity = "1";
+          loading.style.display = "flex";
+        } else if (step == "end") {
+          mainContent.style.opacity = "1";
+          mainContent.style.display = "block";
+          loading.style.opacity = "0";
+          loading.style.display = "none";
+        }
+      }
+
+      var chatBtn = document.getElementById("chatBtn");
+
+      var textInput = document.getElementById("query");
+      // Add a key press event listener to the input element
+      textInput.addEventListener("keyup", function (event) {
+        // Check if the Enter key (key code 13) is pressed
+        if (event.keyCode === 13) {
+          // Simulate button click
+          chatBtn.click();
+        }
+      });
+
+      // online/offline check.
+      var netStatus = document.getElementById("Network_Status");
+      if (navigator.onLine) {
+        netStatus.innerHTML = `<p class="online mt-0 mb-0"></p>
+              Online`;
+      } else {
+        netStatus.innerHTML = `<p class="offline mt-0 mb-0"></p>
+              Offline`;
+      }
+      console.log("status", navigator.onLine);
+
+      function chat(e) {
+        e.preventDefault();
+        // user query
+
+        if (textInput.value == "") {
+          var alert_pst = document.getElementsByClassName("alert-position")[0];
+          alert_pst.innerHTML += `<div class="alert warning">
+                  <span class="closebtn warning" onclick="close(event)">×</span>
+                  <i class="fa fa-warning fa-1x"></i> 
+                <b>Please fill in the query input.</b>.
+                </div>`;
+          // Redirect to a new page or perform other actions upon successful login
+          // window.location.href = 'login.html';
+          close();
+        } else {
+          // part for adding questions from User.
+          var chatBody = document.getElementById("chatBody");
+          var time = getCurrentTime();
+          chatBody.innerHTML += `<div class="message-user-left">
+                <div class="message-user-left-img">
+                <img
+                  src="{% static 'images/user.jpeg' %}"
+                  alt=""
+                />
+                <p class="mt-0 mb-0"><strong>User</strong></p>
+                <small>${time}</small>
+              </div>
+
+              <div class="message-user-left-text">
+                <strong>${query.value}</strong>
+              </div>
+            </div>`;
+
+          var container = document.getElementById("chatBody");
+          var seletOpt = document.getElementById("list");
+
+          var query_pdf_name = seletOpt.value;
+          // container.scrollTop = container.scrollHeight;
+
+          container.scrollTo({
+            top: container.scrollHeight,
+            behavior: "smooth",
+          });
+
+          var data = {
+            query: query.value,
+            pdf_name: query_pdf_name,
+          };
+          query.value = "";
+
+          console.log(data);
+          loading("start");
+          fetch("http://127.0.0.1:8000", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((result) => {
+              loading("end");
+              // Handle the login result
+              var time = getCurrentTime();
+              chatBody.innerHTML += `<div class="message-user-right">
+              <div class="message-user-right-img">
+                <p class="mt-0 mb-0"><strong>AI Assistant</strong></p>
+                <small>${time}</small>s
+                <img
+                src="{% static 'images/chatbot.png' %}"
+                  alt=""
+                />
+              </div>
+              <div class="message-user-right-text">
+                <strong>${result.text}</strong>
+                </div>
+                </div>`;
+
+              container.scrollTo({
+                top: container.scrollHeight,
+                behavior: "smooth",
+              });
+            })
+            .catch((error) => {
+              // Handle any errors that occur during the request
+              console.error("Error:", error);
+              loading("end");
+              var alert_pst =
+                document.getElementsByClassName("alert-position")[0];
+              alert_pst.innerHTML += `<div class="alert warning">
+                  <span class="closebtn warning" onclick="close(event)">×</span>
+                  <i class="fa fa-warning fa-1x"></i> 
+                <b>Your question is not fit and occured error on server.</b>.
+                </div>`;
+              // Redirect to a new page or perform other actions upon successful login
+              // window.location.href = 'login.html';
+              close();
+            });
+        }
+      }
+
+      function getCurrentTime() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+
+        // Format the time to ensure leading zeros if needed
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+
+        // Create a string representation of the current time
+        var currentTimeString = hours + ":" + minutes + ":" + seconds;
+
+        return currentTimeString;
+      }
+    </script>
+    <script src="{% static 'js/chat.js' %}"></script>
+  </body>
+</html>

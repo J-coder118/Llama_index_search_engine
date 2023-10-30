@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/upload_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/alert.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
+    <title>PDF uploading</title>
+  </head>
+
+  <body>
+    <div class="spinner-square">
+      <div class="square-1 square"></div>
+      <div class="square-2 square"></div>
+      <div class="square-3 square"></div>
+    </div>
+
+    <div class="maincontent">
+      <div class="alert-position"></div>
+      <div class="chat-link">
+        <a href="chat"><span><i class="fa fa-user"> </i> chat page</span></a
+        >
+      </div>
+      <div class="file-upload-wrapper">
+        <div class="file-upload-wrapper-title">
+          <h4>File Upload</h4>
+          <hr />
+        </div>
+        <form
+          action="http://127.0.0.1:8000/upload"
+          method="POST"
+          enctype="multipart/form-data"
+          id="uploadForm"
+        >
+        {% csrf_token %}
+          <div class="box-fileupload">
+            <input
+              type="file"
+              id="fileId"
+              class="file-upload-input"
+              accept="application/pdf"
+              name="file"
+              multiple
+            />
+            <label for="fileId" class="file-upload-btn"></label>
+            <p class="box-fileupload__lable">Drop files here to upload</p>
+            <input
+              type="submit"
+              class="file-upload-wrapper-title__btn"
+              value="Upload PDF"
+            />
+          </div>
+        </form>
+        <div class="error-wrapper"></div>
+        <div class="image-previwe"></div>
+      </div>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/app.js"></script>
+    <script src="{% static 'js/myscript.js' %}"></script>
+    <script>
+      function loading(step) {
+        var mainContent = document.getElementsByClassName("maincontent")[0];
+        var loading = document.getElementsByClassName("spinner-square")[0];
+        if (step == "start") {
+          mainContent.style.opacity = "0";
+          mainContent.style.display = "none";
+          loading.style.opacity = "1";
+          loading.style.display = "flex";
+        } else if (step == "end") {
+          mainContent.style.opacity = "1";
+          mainContent.style.display = "block";
+          loading.style.opacity = "0";
+          loading.style.display = "none";
+        }
+      }
+
+      function close() {
+        var acc = document.getElementsByClassName("closebtn");
+        var div = acc.parentElement;
+        console.log(div);
+        for (i = 0; i < acc.length; i++) {
+          acc[i].onclick = function () {
+            var div = this.parentElement;
+            setTimeout(function () {
+              div.style.display = "none";
+              div.style.opacity = "0";
+            }, 100);
+          };
+        }
+      }
+     
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          var fileInput = document.getElementById("fileId");
+          var file = fileInput.files[0];
+
+          if (file) {
+            loading("start");
+            var formData = new FormData();
+            formData.append("file", file);
+            var alert_pst =
+              document.getElementsByClassName("alert-position")[0];
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://127.0.0.1:8000/upload");
+            xhr.onload = function () {
+              if (xhr.status === 200) {
+                loading("end");
+                // Handle a successful upload
+                alert_pst.innerHTML += `<div class="alert success">
+                            <span class="closebtn success" onclick="close(event)">×</span>
+                            <i class="fa fa-check fa-1x"></i> 
+                        <b>File uploaded successfully</b>.
+                        </div>`;
+                close();
+                console.log("File uploaded successfully");
+              } else {
+                loading("end");
+                // Handle upload error
+                alert_pst.innerHTML += `<div class="alert warning">
+                        <p class="closebtn warning" onclick="close(event)">×</p> 
+                        <i class="fa fa-warning fa-1x"></i>
+                        <b>Upload failed</b>
+                        </div>`;
+                close();
+                console.error("Upload failed");
+              }
+            };
+            xhr.send(formData);
+          }
+        });
+
+      $("html").fileUplodPlugins({
+        inputFileUpload: "#fileId",
+        ValidType: ["image/jpeg", "image/png", "application/pdf"],
+        btnUpload: ".file-upload-wrapper-title__btn",
+        deleteImageBtn: ".image-previwe__delete-btn",
+        boxFileUploadPreviwe: ".image-previwe",
+        boxErrorPreviwe: ".error-wrapper",
+      });
+    </script>
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>
