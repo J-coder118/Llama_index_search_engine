@@ -39,10 +39,7 @@ import os
 import json
 from .models import Pinecone_indice
 
-INDEX_NAME = "nalc20192023a"#os.environ.get("INDEX_NAME")
-OPENAI_API_KEY = "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"#os.environ.get("OPENAI_API_KEY")
-PINECONE_API_KEY = "a79d363d-0ad1-4b22-a6f4-eacaa0d3a66e"#os.environ.get("PINECONE_API_KEY")
-PINECONE_REGION = "gcp-starter"#os.environ.get("PINECONE_REGION")
+
 
 
 openai.api_key = OPENAI_API_KEY
